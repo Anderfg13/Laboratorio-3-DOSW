@@ -60,6 +60,16 @@
 				<artifactId>spring-boot-maven-plugin</artifactId>
 			</plugin>
 
+			<!-- Plugin Exec Maven -->
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>exec-maven-plugin</artifactId>
+				<version>3.5.1</version>
+				<configuration>
+					<mainClass>edu.dosw.lab.Application</mainClass>
+				</configuration>
+			</plugin>
+
 			<!-- Plugin Jacoco -->
 			<plugin>
 				<groupId>org.jacoco</groupId>
