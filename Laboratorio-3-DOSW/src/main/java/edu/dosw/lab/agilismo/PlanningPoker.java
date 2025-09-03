@@ -41,7 +41,7 @@ public class PlanningPoker {
             }
         }
 
-        System.out.println("\n📊 Resumen final:");
+        System.out.println("\n Resumen final:");
         for (Map.Entry<String, Integer> entry : results.entrySet()) {
             System.out.println("- " + entry.getKey() + ": " + entry.getValue());
         }
