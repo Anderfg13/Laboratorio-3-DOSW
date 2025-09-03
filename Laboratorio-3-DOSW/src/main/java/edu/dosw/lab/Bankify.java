@@ -1,5 +1,6 @@
 package edu.dosw.lab;
 
+
 import java.util.Scanner;
 
 public class Bankify {
