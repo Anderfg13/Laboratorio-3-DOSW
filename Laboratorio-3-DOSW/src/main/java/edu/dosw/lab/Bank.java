@@ -1,5 +1,7 @@
 package edu.dosw.lab;
 
+import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 public class Bank {
@@ -9,6 +11,18 @@ public class Bank {
     private String status;
 
     private List<Account> accounts;
+
+    public Bank(int bankID, String name, String prefix, String status){
+        this.bankID = bankID;
+        this.name = name;
+        this.prefix = prefix;
+        this.status = status;
+        this.accounts = new ArrayList<>();
+    }
+    void crearCuenta(String numeroCuenta, LocalDate fechaCreacion, String estado, Double balance,Bank banco){
+        Account cuenta = new Account(bankID, fechaCreacion, estado, bankID, banco);
+        accounts.add(cuenta);
+    }
 
     // Getters y setters
     public int getBankID() {return bankID;}

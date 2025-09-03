@@ -4,7 +4,7 @@ import java.time.LocalDate;
 import java.util.List;
 
 
-public class Account {
+public class Account implements AccountValidation{
     private int accountID;
     private LocalDate creationDate;
     private String state;
@@ -13,14 +13,13 @@ public class Account {
     private Bank bank;
     private List<Deposit> deposits;
 
-    public Account(int accountID, LocalDate creationDate, String state, double balance, Bank bank, List<Deposit> deposits) {
+    public Account(int accountID, LocalDate creationDate, String state, double balance, Bank bank) {
         assert(balance >= 0);
         this.accountID = accountID;
         this.creationDate = creationDate;
         this.state = state;
         this.balance = balance;
         this.bank = bank;
-        this.deposits = deposits;
     }
 
     // Getters y Setters
@@ -47,4 +46,10 @@ public class Account {
     public List<Deposit> getDeposits() {return deposits;}
 
     public void setDeposits(List<Deposit> deposits) {this.deposits = deposits;}
+
+    @Override
+    public void validate(Account account) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'validate'");
+    }
 }
