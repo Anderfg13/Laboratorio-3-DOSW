@@ -3,16 +3,23 @@ package edu.dosw.lab;
 import java.time.LocalDateTime;
 
 public class Branch {
-    private int typeRequest;
+    private String typeRequest;
     private LocalDateTime creationRequest;
     private int branchID;
 
     private Location location;
 
-    // Getters y setters
-    public int getTypeRequest() {return typeRequest;}
+    public Branch(String type, String city) {
+        this.typeRequest = type;
+        this.creationRequest = LocalDateTime.now();
+        this.branchID = (int) (Math.random() * 1000);
+        this.location = new Location(city, "Default Neighborhood");
+    }
 
-    public void setTypeRequest(int typeRequest) {this.typeRequest = typeRequest;}
+    // Getters y setters
+    public String getTypeRequest() {return typeRequest;}
+
+    public void setTypeRequest(String typeRequest) {this.typeRequest = typeRequest;}
 
     public LocalDateTime getCreationRequest() {return creationRequest;}
 
