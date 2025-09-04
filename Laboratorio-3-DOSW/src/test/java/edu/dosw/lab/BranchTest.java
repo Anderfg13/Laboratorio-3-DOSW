@@ -10,47 +10,43 @@ import static org.junit.jupiter.api.Assertions.*;
 class BranchTest {
 
     private Branch branch;
-    private Location location;
 
     @BeforeEach
     void setUp() {
-        location = new Location();
-        location.setCity("Bogotá");
-        location.setNeighborhood("Chapinero");
-
-        branch = new Branch();
-        branch.setTypeRequest(1);
-        branch.setCreationRequest(LocalDateTime.of(2023, 5, 10, 14, 30));
-        branch.setBranchID(101);
-        branch.setLocation(location);
+        branch = new Branch("DEPOSITO", "Bogotá");
     }
 
     @Test
-    void testGettersReturnCorrectValues() {
-        assertEquals(1, branch.getTypeRequest());
-        assertEquals(LocalDateTime.of(2023, 5, 10, 14, 30), branch.getCreationRequest());
-        assertEquals(101, branch.getBranchID());
-        assertEquals(location, branch.getLocation());
+    void testBranchCreation() {
+        assertEquals("DEPOSITO", branch.getTypeRequest());
+        assertNotNull(branch.getCreationRequest());
+        assertTrue(branch.getBranchID() >= 0 && branch.getBranchID() < 1000);
+        assertNotNull(branch.getLocation());
         assertEquals("Bogotá", branch.getLocation().getCity());
-        assertEquals("Chapinero", branch.getLocation().getNeighborhood());
+        assertEquals("Default Neighborhood", branch.getLocation().getNeighborhood());
     }
 
     @Test
-    void testSettersUpdateValuesCorrectly() {
-        Location newLocation = new Location();
-        newLocation.setCity("Medellín");
-        newLocation.setNeighborhood("El Poblado");
+    void testSettersAndGetters() {
+        branch.setTypeRequest("RETIRO");
+        branch.setBranchID(123);
+        LocalDateTime now = LocalDateTime.of(2025, 9, 3, 10, 0);
+        branch.setCreationRequest(now);
 
-        branch.setTypeRequest(2);
-        branch.setCreationRequest(LocalDateTime.of(2024, 6, 15, 9, 45));
-        branch.setBranchID(202);
+        Location newLocation = new Location("Medellín", "El Poblado");
         branch.setLocation(newLocation);
 
-        assertEquals(2, branch.getTypeRequest());
-        assertEquals(LocalDateTime.of(2024, 6, 15, 9, 45), branch.getCreationRequest());
-        assertEquals(202, branch.getBranchID());
-        assertEquals(newLocation, branch.getLocation());
+        assertEquals("RETIRO", branch.getTypeRequest());
+        assertEquals(123, branch.getBranchID());
+        assertEquals(now, branch.getCreationRequest());
         assertEquals("Medellín", branch.getLocation().getCity());
         assertEquals("El Poblado", branch.getLocation().getNeighborhood());
+    }
+
+    @Test
+    void testRandomBranchIdIsDifferentMostTimes() {
+        Branch another = new Branch("DEPOSITO", "Cali");
+        // No garantizamos unicidad absoluta, pero en la práctica deberían ser diferentes
+        assertNotEquals(branch.getBranchID(), another.getBranchID());
     }
 }

@@ -11,23 +11,33 @@ class LocationTest {
 
     @BeforeEach
     void setUp() {
-        location = new Location();
-        location.setCity("Bogotá");
-        location.setNeighborhood("Chapinero");
+        location = new Location("Bogotá", "Chapinero");
     }
 
     @Test
-    void testGettersReturnCorrectValues() {
+    void testLocationCreation() {
         assertEquals("Bogotá", location.getCity());
         assertEquals("Chapinero", location.getNeighborhood());
     }
 
     @Test
-    void testSettersUpdateValuesCorrectly() {
+    void testSettersAndGetters() {
         location.setCity("Medellín");
         location.setNeighborhood("El Poblado");
 
         assertEquals("Medellín", location.getCity());
         assertEquals("El Poblado", location.getNeighborhood());
+    }
+
+    @Test
+    void testDifferentObjectsNotEqual() {
+        Location another = new Location("Cali", "San Antonio");
+
+        // Son objetos distintos aunque tengan diferentes datos
+        assertNotEquals(location, another);
+
+        // Pero sus atributos sí son correctos
+        assertEquals("Cali", another.getCity());
+        assertEquals("San Antonio", another.getNeighborhood());
     }
 }

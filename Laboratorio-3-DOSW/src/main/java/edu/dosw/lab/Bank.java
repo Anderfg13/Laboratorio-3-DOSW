@@ -1,31 +1,25 @@
 package edu.dosw.lab;
 
-import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.TreeMap;
 
 public class Bank {
-    private int bankID;
+    private String bankID;
     private String name;
     private String prefix;
     private String status;
 
-    private List<Account> accounts;
+    private TreeMap<String, Account> accounts;
 
-    public Bank(int bankID, String name, String prefix, String status){
+    public Bank(String bankID, String name, String prefix, String status){
         this.bankID = bankID;
         this.name = name;
         this.prefix = prefix;
         this.status = status;
-        this.accounts = new ArrayList<>();
-    }
-    void crearCuenta(String numeroCuenta, LocalDate fechaCreacion, String estado, Double balance,Bank banco){
-        Account cuenta = new Account(bankID, fechaCreacion, estado, bankID, banco);
-        accounts.add(cuenta);
+        this.accounts = new TreeMap<>();
     }
 
     // Getters y setters
-    public int getBankID() {return bankID;}
+    public String getBankID() {return bankID;}
 
     public String getName() {return name;}
 
@@ -33,7 +27,7 @@ public class Bank {
 
     public String getStatus() {return status;}
 
-    public void setBankID(int bankID) {this.bankID = bankID;}
+    public void setBankID(String bankID) {this.bankID = bankID;}
 
     public void setName(String name) {this.name = name;}
 
@@ -41,7 +35,12 @@ public class Bank {
 
     public void setStatus(String status) {this.status = status;}
 
-    public List<Account> getAccounts() {return accounts;}
+    public TreeMap<String, Account> getAccounts() {return accounts;}
 
-    public void setAccounts(List<Account> accounts) {this.accounts = accounts;}
+    public void setAccounts(TreeMap<String,Account> accounts) {this.accounts = accounts;}
+
+
+    public void añadirCuenta(Account cuenta){
+        accounts.put(cuenta.getAccountID(), cuenta);
+    }
 }

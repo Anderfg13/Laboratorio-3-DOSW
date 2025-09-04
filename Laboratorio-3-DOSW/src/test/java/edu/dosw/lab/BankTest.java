@@ -3,67 +3,62 @@ package edu.dosw.lab;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.time.LocalDate;
+import java.util.TreeMap;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 class BankTest {
 
     private Bank bank;
-    private List<Account> accounts;
 
     @BeforeEach
     void setUp() {
-        accounts = new ArrayList<>();
-        accounts.add(new Account(
-                1,
-                java.time.LocalDate.of(2023, 1, 1),
-                "ACTIVE",
-                1000.0,
-                null,
-                new ArrayList<>()
-        ));
-
-        bank = new Bank();
-        bank.setBankID(101);
-        bank.setName("Banco Central");
-        bank.setPrefix("BC");
-        bank.setStatus("ACTIVE");
-        bank.setAccounts(accounts);
+        bank = new Bank("01", "Bancolombia", "01", "ACTIVE");
     }
 
     @Test
-    void testGettersReturnCorrectValues() {
-        assertEquals(101, bank.getBankID());
-        assertEquals("Banco Central", bank.getName());
-        assertEquals("BC", bank.getPrefix());
+    void testBankCreation() {
+        assertEquals("01", bank.getBankID());
+        assertEquals("Bancolombia", bank.getName());
+        assertEquals("01", bank.getPrefix());
         assertEquals("ACTIVE", bank.getStatus());
-        assertEquals(accounts, bank.getAccounts());
-    }
-
-    @Test
-    void testSettersUpdateValuesCorrectly() {
-        List<Account> newAccounts = new ArrayList<>();
-        Bank newBank = new Bank();
-
-        newBank.setBankID(202);
-        newBank.setName("Banco Nacional");
-        newBank.setPrefix("BN");
-        newBank.setStatus("INACTIVE");
-        newBank.setAccounts(newAccounts);
-
-        assertEquals(202, newBank.getBankID());
-        assertEquals("Banco Nacional", newBank.getName());
-        assertEquals("BN", newBank.getPrefix());
-        assertEquals("INACTIVE", newBank.getStatus());
-        assertEquals(newAccounts, newBank.getAccounts());
-    }
-
-    @Test
-    void testSetAndGetAccounts() {
-        List<Account> emptyAccounts = new ArrayList<>();
-        bank.setAccounts(emptyAccounts);
+        assertNotNull(bank.getAccounts());
         assertTrue(bank.getAccounts().isEmpty());
+    }
+
+    @Test
+    void testAddAccount() {
+        Account account = new Account("0123456789", LocalDate.now(), "PENDING", 500.0);
+        bank.añadirCuenta(account);
+
+        assertEquals(1, bank.getAccounts().size());
+        assertTrue(bank.getAccounts().containsKey(account.getAccountID()));
+        assertEquals(account, bank.getAccounts().get(account.getAccountID()));
+    }
+
+    @Test
+    void testSettersAndGetters() {
+        bank.setBankID("02");
+        bank.setName("Davivienda");
+        bank.setPrefix("02");
+        bank.setStatus("INACTIVE");
+
+        assertEquals("02", bank.getBankID());
+        assertEquals("Davivienda", bank.getName());
+        assertEquals("02", bank.getPrefix());
+        assertEquals("INACTIVE", bank.getStatus());
+    }
+
+    @Test
+    void testSetAccounts() {
+        TreeMap<String, Account> newAccounts = new TreeMap<>();
+        Account account = new Account("9876543210", LocalDate.now(), "PENDING", 1000.0);
+        newAccounts.put(account.getAccountID(), account);
+
+        bank.setAccounts(newAccounts);
+
+        assertEquals(1, bank.getAccounts().size());
+        assertEquals(account, bank.getAccounts().get("9876543210"));
     }
 }

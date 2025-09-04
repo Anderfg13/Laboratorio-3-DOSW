@@ -4,5 +4,7 @@ public interface AccountValidation {
     String APPROVED = "Cuenta validada";
     String DENIED = "Cuenta no validada";
 
-    void validate(Account account);
+    
+
+    void validateAccount(Account account);
 }

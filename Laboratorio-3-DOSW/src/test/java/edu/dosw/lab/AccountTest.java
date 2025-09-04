@@ -1,69 +1,62 @@
 package edu.dosw.lab;
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 class AccountTest {
 
     private Account account;
-    private Bank bank;
-    private List<Deposit> deposits;
 
     @BeforeEach
     void setUp() {
-        bank = new Bank(); 
-        deposits = new ArrayList<>();
-        deposits.add(new Deposit()); 
-
-        account = new Account(
-                1,
-                LocalDate.of(2023, 1, 1),
-                "ACTIVE",
-                500.0,
-                bank,
-                deposits
-        );
+        account = new Account("1234567890", LocalDate.now(), "PENDING", 1000.0);
+        account.setDeposits(new ArrayList<>());
     }
 
     @Test
-    void testGettersReturnCorrectValues() {
-        assertEquals(1, account.getAccountID());
-        assertEquals(LocalDate.of(2023, 1, 1), account.getCreationDate());
-        assertEquals("ACTIVE", account.getState());
-        assertEquals(500.0, account.getBalance());
-        assertEquals(bank, account.getBank());
-        assertEquals(deposits, account.getDeposits());
-    }
-
-    @Test
-    void testSettersUpdateValuesCorrectly() {
-        Bank newBank = new Bank();
-        List<Deposit> newDeposits = new ArrayList<>();
-
-        account.setAccountID(2);
-        account.setCreationDate(LocalDate.of(2024, 5, 15));
-        account.setState("INACTIVE");
-        account.setBalance(1000.0);
-        account.setBank(newBank);
-        account.setDeposits(newDeposits);
-
-        assertEquals(2, account.getAccountID());
-        assertEquals(LocalDate.of(2024, 5, 15), account.getCreationDate());
-        assertEquals("INACTIVE", account.getState());
+    void testAccountCreation() {
+        assertEquals("1234567890", account.getAccountID());
         assertEquals(1000.0, account.getBalance());
-        assertEquals(newBank, account.getBank());
-        assertEquals(newDeposits, account.getDeposits());
+        assertNotNull(account.getCreationDate());
+        assertEquals(AccountValidation.APPROVED, account.getState()); // porque balance >= 0
     }
 
     @Test
-    void testConstructorBalanceCannotBeNegative() {
+    void testDepositIncreasesBalanceAndAddsDeposit() {
+        int initialDeposits = account.getDeposits().size();
+
+        Deposit deposit = account.deposit(500.0, 1, "Bogotá");
+
+        assertNotNull(deposit);
+        assertEquals(initialDeposits + 1, account.getDeposits().size());
+        assertTrue(account.getDeposits().contains(deposit));
+        assertEquals(500.0, deposit.getAmount());
+        assertEquals("Bogotá", deposit.getCity());
+    }
+
+    @Test
+    void testValidateAccountApproved() {
+        account.setBalance(100);
+        account.validateAccount(account);
+        assertEquals(AccountValidation.APPROVED, account.getState());
+    }
+
+    @Test
+    void testValidateAccountDenied() {
+        account.setBalance(-50);
+        account.validateAccount(account);
+        assertEquals(AccountValidation.DENIED, account.getState());
+    }
+
+    @Test
+    void testAssertPreventsNegativeBalanceOnCreation() {
         assertThrows(AssertionError.class, () -> {
-            new Account(3, LocalDate.now(), "ACTIVE", -100.0, bank, deposits);
+            new Account("0987654321", LocalDate.now(), "PENDING", -100);
         });
     }
 }
