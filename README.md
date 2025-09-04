@@ -76,7 +76,7 @@ Esas fueron las historias de usuario generadas de los requerimientos funcionales
 
 Por último, se desarrolló el diagrama de clases con los requerimientos solicitados. Tenemos una clase controlador llamada "Bankify", la cual será la encargada de manejar toda la lógica, más sin embargo, el funcionamiento viene de las otras clases.
 
-En primer lugar nos encontramos con Bank, la clase que creará los bancos y en caso que más bancos se afilien, será más sencillo poder agregarlos, de igual manera que si se llegan a crear nuevos requerimientos, por ejemplo algún tipo de tasas de interéses, transferencias interbancarias, esta clase al resolver toda la parte de los bancos lo vuelve sencillo.
+En primer lugar nos encontramos con Bank, la clase que creará los bancos y en caso que más bancos se afilien, será más sencillo poder agregarlos, de igual manera que si se llegan a crear nuevos requerimientos, por ejemplo algún tipo de tasas de interéses, transferencias interbancarias, esta clase al resolver toda la parte de los bancos lo vuelve sencillo. También tenemos la clase User, encargada de todo el manejo de los usuarios (para que tenga una clase propia y no se trabaje desde Bankify).
 
 De ahí pasamos a la clase Account, será la encargada de toda la parte de la creación de la cuenta de las personas, en donde se guarda el dinero y la información del usuario; esta clase implementa la interfaz AccountValidate (parte de los requerimientos), en donde en pro de la seguridad del software se hará una validación de la cuenta de si satisface las normas o no.
 
