@@ -2,13 +2,54 @@ package edu.dosw.lab;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-
+import java.util.TreeMap;
 import org.junit.jupiter.api.DisplayName;
 import static org.junit.jupiter.api.Assertions.*;
 
 import java.time.LocalDate;
  
-public class UserTest {
+class UserTest {
+    @Test
+    void testSetAndGetIdentification() {
+        user.setIdentification("9876543210");
+        assertEquals("9876543210", user.getIdentification());
+    }
+
+    @Test
+    void testSetAndGetName() {
+        user.setName("Nuevo Nombre");
+        assertEquals("Nuevo Nombre", user.getName());
+    }
+
+    @Test
+    void testSetAndGetEmail() {
+        user.setEmail("nuevo@email.com");
+        assertEquals("nuevo@email.com", user.getEmail());
+    }
+
+    @Test
+    void testSetAndGetPhone() {
+        user.setPhone("3009999999");
+        assertEquals("3009999999", user.getPhone());
+    }
+
+    @Test
+    void testSetAndGetStatus() {
+        user.setStatus(false);
+        assertFalse(user.isStatus());
+        user.setStatus(true);
+        assertTrue(user.isStatus());
+    }
+
+    @Test
+    void testSetAndGetAccounts() {
+        TreeMap<String, Account> newAccounts = new TreeMap<>();
+        Account acc = new Account("0123456789", LocalDate.now(), "APPROVED", 100.0);
+        newAccounts.put("0123456789", acc);
+        user.setAccounts(newAccounts);
+        assertEquals(newAccounts, user.getAccounts());
+        assertTrue(user.getAccounts().containsKey("0123456789"));
+    }
     private User user;
     private Bank bancolombia;
     private Bank davivienda;

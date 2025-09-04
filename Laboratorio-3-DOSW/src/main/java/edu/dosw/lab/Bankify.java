@@ -11,16 +11,25 @@ import java.util.TreeMap;
 
 public class Bankify {
 
-    private TreeMap<String,Bank> bancos;
-    private List<Deposit> depositos;
-    private TreeMap<String,User> users;
-    private boolean active;
+    public TreeMap<String,Bank> bancos;
+    public List<Deposit> depositos;
+    public TreeMap<String,User> users;
+    public boolean active;
 
     public Bankify() {
         this.bancos = new TreeMap<>();
         this.depositos = new ArrayList<>();
         this.users = new TreeMap<>();
         this.active = true;
+    }
+
+
+    public TreeMap<String,User> getUsers() {
+        return users;
+    }
+
+    public boolean isActive() {
+        return active;
     }
 
     public static void main(String[] args) {
@@ -51,7 +60,7 @@ public class Bankify {
      * El bucle finaliza cuando el usuario selecciona la opción 0,
      * lo que desactiva la variable active y cierra el Scanner.
      */
-    private void start() {
+    public void start() {
         System.out.println("===== BIENVENIDO A BANKIFY =====\n");
         Scanner scanner = new Scanner(System.in);
 

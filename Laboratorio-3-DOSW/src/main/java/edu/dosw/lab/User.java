@@ -55,6 +55,10 @@ public class User {
         this.phone = phone;
     }
 
+
+    public boolean isActive() {
+        return status;
+    }
     public boolean isStatus() {
         return status;
     }

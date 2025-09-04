@@ -147,10 +147,56 @@ Además de los patrones, el proyecto sigue varios principios de **SOLID**:
 
 ## Corran que ahí viene el Jacoco
 
-## SonarQube
+IMAGEN INICIAL
 
+<p align="center">
+	<img src="Laboratorio-3-DOSW/docs/imagenes/jacocoV1.png" alt="Sesión de la votación" width="400"/>
+</p>
+
+¿Cuál es el porcentaje de cobertura de instrucciones y de ramas?
+El porcentaje de cobertura de instrucciones fue de un 32% y de ramas fue un 13% 
+
+¿Hay alguna línea o condición que las pruebas no cubrieron? 
+Si, lo que ocurrio es que habian varias partes de codigo donde se imprimian menus, entonces a la hora de correr las pruebas normalmente, no las tomaban, entonces para que esto abarcara tambien las pruebas, se toco cambiar a un tipo de pruebas que escribiera y leyera
+
+IMAGEN FINAL
+
+<p align="center">
+	<img src="Laboratorio-3-DOSW/docs/imagenes/jacocoV2.png" alt="Sesión de la votación" width="400"/>
+</p>
+
+Como reflexion, se puede decir que hay que analizar los distintos tipos de pruebas en los que puede pasar un metodo y en los que no, como anteriormente nos ocurrio, las pruebas que estabamos realizando no escribian en consola entonces no estaban aportando al analisis de Jacoco.
+
+## SonarQube
+Descarguen la imagen del docker
+- Para esta parte se descargó el programa Docker Desktop, se actualizó todo lo que se señalaba, en especial con el comando wsl --update
+
+<p align="center">
+	<img src="Laboratorio-3-DOSW/docs/imagenes/instalacionDocker.png" alt="Sesión de la votación" width="400"/>
+</p>
+
+-Arranquen el servicio de SonarQube con el siguiente comando
+
+<p align="center">
+	<img src="Laboratorio-3-DOSW/docs/imagenes/arranqueServicio.png" alt="Sesión de la votación" width="400"/>
+</p>
+
+-Validen el funcionamiento
+
+<p align="center">
+	<img src="Laboratorio-3-DOSW/docs/imagenes/validacionFuncionamiento.png" alt="Sesión de la votación" width="400"/>
+</p>
+
+-Inicien sesión en sonar en el localhost:9000 y cambien la clave
+
+<p align="center">
+	<img src="Laboratorio-3-DOSW/docs/imagenes/ingresarLocalHost.png" alt="Sesión de la votación" width="400"/>
+</p>
+
+-Entren a las opciones de la cuenta: Account -> settings -> generate token 
 
 ### Pruebas en un software diseñado
 
 Ignacio: Considero que es vital basar el desarrollo de un software diseñado en las pruebas debido a que al seguir este camino, podrás evitar errores futuros, tener una idea más clara de cómo debe funcionar el software, evitarse tener que hacer pruebas en GUI que son mucho más demoradas y de paso pruebas que cada función atómica del problema funcione correctamente.
 
+Anderson: Puedo decir que trabajar en torno a pruebas en un software necesario nos provee una confianza que el producto funciona correctamente, es verdad que pueden existir distintos cambios al producto siendo una actualización o un mejoramiento de la logica, considero que las pruebas nos dan el check que todo funciona correctamente.

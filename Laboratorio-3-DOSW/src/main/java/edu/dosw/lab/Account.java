@@ -1,6 +1,7 @@
 package edu.dosw.lab;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -18,6 +19,7 @@ public class Account implements AccountValidation{
         this.creationDate = creationDate;
         this.state = state;
         this.balance = balance;
+        this.deposits = new ArrayList<>();
         validateAccount(this);
     }
 
