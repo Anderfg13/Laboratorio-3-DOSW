@@ -102,6 +102,49 @@ Tuvimos una charla evaluando las historias de usuario que se colocaron (los cual
 
 ## Tiempo de desarrollo
 
+## 📐 Patrones de Diseño Implementados
+
+### 1. **Factory Method (creación de cuentas y depósitos)**
+- **Dónde:**  
+  - `User.createAccount()`  
+  - `User.makeDeposit()`  
+- **Cómo:**  
+  Los métodos actúan como **fábricas**, encapsulando la lógica de construcción de objetos (`Account`, `Deposit`) y evitando que el resto del sistema dependa de la forma exacta en que se instancian.  
+- **Beneficio:**  
+  - Centraliza la creación de cuentas y depósitos.  
+  - Facilita la validación y asegura la consistencia en los objetos creados.  
+
+---
+
+### 2. **Strategy / Interface-based design (validación de cuentas)**
+- **Dónde:**  
+  - `Account implements AccountValidation`  
+- **Cómo:**  
+  Se define una **interfaz (`AccountValidation`)** que permite encapsular la lógica de validación de cuentas. Actualmente está implementada directamente en la clase `Account`, pero es extensible a otras estrategias en el futuro (ej. validación por tipo de cuenta, políticas de banco).  
+- **Beneficio:**  
+  - Flexibilidad para cambiar las reglas de validación sin modificar la clase `Account`.  
+  - Principio de **abierto/cerrado (OCP)**.  
+
+---
+
+### 3. **Command (menú de acciones en Bankify)**
+- **Dónde:**  
+  - `Bankify.start()`  
+- **Cómo:**  
+  El menú usa un **mapa de enteros → acciones (`Runnable`)** en lugar de un `switch-case`. Cada acción del menú se encapsula como un comando ejecutable.  
+- **Beneficio:**  
+  - Elimina código repetitivo con `switch-case`.  
+  - Facilita agregar o modificar opciones del menú sin tocar la estructura principal.  
+
+---
+
+## 🔒 Principios SOLID aplicados
+Además de los patrones, el proyecto sigue varios principios de **SOLID**:
+- **S (Single Responsibility):**  
+  Cada clase (`Account`, `User`, `Bank`, etc.) tiene una responsabilidad clara.  
+- **O (Open/Closed):**  
+  Se pueden agregar nuevos tipos de validación o reglas sin modificar las clases base.
+
 ## Corran que ahí viene el Jacoco
 
 ## SonarQube
