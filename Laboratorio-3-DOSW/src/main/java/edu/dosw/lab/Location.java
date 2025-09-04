@@ -4,6 +4,11 @@ public class Location {
     private String city;
     private String neighborhood;
 
+    public Location(String city, String neighborhood) {
+        this.city = city;
+        this.neighborhood = neighborhood;
+    }
+
     // Getters y setters
     public String getCity() {return city;}
 

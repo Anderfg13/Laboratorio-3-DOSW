@@ -10,6 +10,14 @@ public class Deposit {
     private Account account;
     private Branch transactionPlace;
 
+    public Deposit(int movementID, double amount, String city) {
+        assert(amount > 0);
+        this.movementID = movementID;
+        this.movementDate = LocalDate.now();
+        this.amount = amount;
+        this.transactionPlace = new Branch("DEPOSITO",city);
+    }
+
     // Getters y setters
     public int getMovementID() {return movementID;}
 
@@ -30,4 +38,8 @@ public class Deposit {
     public Branch getTransactionPlace() {return transactionPlace;}
 
     public void setTransactionPlace(Branch transactionPlace) {this.transactionPlace = transactionPlace;}
+
+    public String getCity(){
+        return transactionPlace.getLocation().getCity();
+    }
 }
