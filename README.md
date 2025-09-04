@@ -195,6 +195,9 @@ Descarguen la imagen del docker
 
 -Entren a las opciones de la cuenta: Account -> settings -> generate token 
 
+Ya luego de haber generado el token y agregar las dependencias y plugins de Sonar al pom, se utiliza el comando:
+mvn verify sonar:sonar -D sonar.token=[TOKEN_GENERADO] para evidenciar el análisis estático del código.
+
 ### Pruebas en un software diseñado
 
 Ignacio: Considero que es vital basar el desarrollo de un software diseñado en las pruebas debido a que al seguir este camino, podrás evitar errores futuros, tener una idea más clara de cómo debe funcionar el software, evitarse tener que hacer pruebas en GUI que son mucho más demoradas y de paso pruebas que cada función atómica del problema funcione correctamente.
