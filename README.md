@@ -99,3 +99,15 @@ Tuvimos una charla evaluando las historias de usuario que se colocaron (los cual
 <p align="center">
 	<img src="Laboratorio-3-DOSW/docs/imagenes/votation.png" alt="Sesión de la votación" width="600"/>
 </p>
+
+## Tiempo de desarrollo
+
+## Corran que ahí viene el Jacoco
+
+## SonarQube
+
+
+### Pruebas en un software diseñado
+
+Ignacio: Considero que es vital basar el desarrollo de un software diseñado en las pruebas debido a que al seguir este camino, podrás evitar errores futuros, tener una idea más clara de cómo debe funcionar el software, evitarse tener que hacer pruebas en GUI que son mucho más demoradas y de paso pruebas que cada función atómica del problema funcione correctamente.
+
