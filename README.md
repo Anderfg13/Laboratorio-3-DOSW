@@ -202,7 +202,9 @@ Se puso el nombre sonarqube-Analysis y userToken, e inmediatamente nos devolvio 
 	<img src="Laboratorio-3-DOSW/docs/imagenes/sonarQube.png" alt="Sesión de la votación" width="400"/>
 </p>
 
-### Pruebas en un software diseñado
+Ya luego de haber generado el token y agregar las dependencias y plugins de Sonar al pom, se utiliza el comando:
+mvn verify sonar:sonar -D sonar.token=[TOKEN_GENERADO] para evidenciar el análisis estático del código.
+
 
 Ignacio: Considero que es vital basar el desarrollo de un software diseñado en las pruebas debido a que al seguir este camino, podrás evitar errores futuros, tener una idea más clara de cómo debe funcionar el software, evitarse tener que hacer pruebas en GUI que son mucho más demoradas y de paso pruebas que cada función atómica del problema funcione correctamente.
 
